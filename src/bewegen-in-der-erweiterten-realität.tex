@@ -54,7 +54,7 @@ Das physische headset kann sich, wie in Abbildung~\ref{fig:6DOF} dargestellt, im
     \includesvg[width={0.33\textwidth}]{../assets/img/6DOF}
     \caption{6 Degrees Of Freedom~\autocite{wikipedia-contributors-2023B}}
 \end{figure}
-Damit wird die Darstellung meistens auf einen Vektor für die Position sowie eine Quaternion~\autocite{wikipedia-contributors-2023F} für die Rotation beschränkt.
+Damit wird die Darstellung meistens auf einen Vektor für die Position sowie eine Quaternion~\autocite{wikipedia-contributors-2023G} für die Rotation beschränkt.
 
 \subsection{Positioning System}\label{subsec:positioning-system}
 Das bringt die Entwicklung von AR-Headsets vor seine ganz eigene Herausforderung, da diese 6DOF notwendig sind, um dem nutzer ein minimum an Orientierung zu bieten.
@@ -62,7 +62,7 @@ Das bringt die Entwicklung von AR-Headsets vor seine ganz eigene Herausforderung
 Dazu werden Positionierungssysteme~\autocite{wikipedia-contributors-2023A} verwendet.
 
 \subsubsection{Global Positioning System}\label{subsubsec:global-positioning-system}
-Eines der bekanntesten Positionierungssysteme ist das GPS~\autocite{wikipedia-contributors-2023G}, welches heutzutage in jedem Mobiltelefon verbaut ist.
+Eines der bekanntesten Positionierungssysteme ist das GPS~\autocite{wikipedia-contributors-2023J}, welches heutzutage in jedem Mobiltelefon verbaut ist.
 GPS ist eines der wenigen globalen Satellitennavigationssysteme.
 
 Diese Systeme lösen das Problem der Positionierung, wie der Name suggeriert, indem, mindestens 4, Satellite, in Sichtweite, Radiowellen wellen aussenden.
@@ -71,9 +71,9 @@ Die Radiowellen tragen als Signal den Zeitstempel des senden des Signals, damit 
     \label{fig:ToF}
     \center
     \includegraphics[width={0.33\textwidth}]{../assets/img/time_of_flight}
-    \caption{Time of Flight~\autocite{wikipedia-contributors-2023C}}
+    \caption{Time of Flight~\autocite{wikipedia-contributors-2023D}}
 \end{figure}
-Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023C}, kurz \textbf{ToF}, genannt und ist in Abbildung~\ref{fig:ToF} dargestellt.
+Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023D}, kurz \textbf{ToF}, genannt und ist in Abbildung~\ref{fig:ToF} dargestellt.
 
 Dem aufmerksamen Leser sollte aufgefallen sein, dass 4 weniger als 6 ist.
 Deshalb können aus den 4 Zahlen auch nur 3DOF, also die Position, auf 0.3 bis zu 5 Meter genau, errechnet werden.
@@ -82,29 +82,31 @@ Deshalb können aus den 4 Zahlen auch nur 3DOF, also die Position, auf 0.3 bis z
 Aufgrund dieser Ungenauigkeit kann GPS auch nicht für die ersten 3DOF genutzt werden.
 Auch mit 30~cm ungenauigkeit könnten wir in keine virtuelle Realität eintauchen.
 
-Deshalb müssen genauere Systeme her, sogenannte Indoor Positioning Systems~\autocite{wikipedia-contributors-2023D}.
+Deshalb müssen genauere Systeme her, sogenannte Indoor Positioning Systems~\autocite{wikipedia-contributors-2023E}.
 Diese sind Systeme, die die Positionierung innerhalb eines Raums oder Arbeitsplatzes ermöglichen.
 Ob 6DOF oder lediglich 3DOF erreicht werden ist dabei vom jeweiligen System abhängig.
 
 \paragraph{Base Stations}\label{par:base-stations} werden hierfür klassischerweise verwendet.
 Diese sind externe Geräte, welche, ähnlich wie die Satellite beim GPS, die Position des Empfängers ermitteln.
 
-Es gibt einige enterprise Systeme, welche zum Beispiel in Lagerhäusern verwendet werden~\autocite{wikipedia-contributors-2023D}.
-Für diese Ausarbeitung werden wir uns allerdings als Beispiel die SteamVR Base Station 2.0~\autocite{unknown-author-no-date} anschauen.
+Es gibt einige enterprise Systeme, welche zum Beispiel in Lagerhäusern verwendet werden~\autocite{wikipedia-contributors-2023E}.
+Für diese Ausarbeitung werden wir uns allerdings als Beispiel die SteamVR Base Station 2.0~\autocite{valve-corporation-no-date} anschauen.
 
 Diese nutzen allerdings keine Time of Flight.
 Anstatt die Position aus der Distanz zu errechnen wird hier die Position durch das Abtasten mittels eines Lasers ermittelt.
 Damit werden mehrere markante Punkte an dem VR-Headset pro Basisstation abgetastet.
 Es ergeben sich daraus also 6DOF\@.
 
-\paragraph{Spatial cognition}~\autocite{wikipedia-contributors-2023E} ist die Warnehrung der Umgebung vom Menschen und anderen Lebewesen.
+\paragraph{Spatial cognition}~\autocite{wikipedia-contributors-2023F} ist die Warnehrung der Umgebung vom Menschen und anderen Lebewesen.
 Unter anderem umfasst dieses Thema die Objektpermanenz.
 
 Als ein bionischer Ansatz wird dieses Konzept heute auf AR-Headsets angewendet.
-Daraus ergibt sich ein voller Funktionsumfang, ohne an einen zuvor eingerichteten Raum gebunden zu sein.
-Und das für die vollen 6DOF\@.
+Daraus ergeben sich 6DOF, ohne an einen zuvor eingerichteten Raum gebunden zu sein.
 
-\subsection{Spatial Cognition für AR-Headsets}\label{subsec:spatial-cognition-fur-ar-headsets}
-\subsubsection{World Coordinate System}
-\subsubsection{Spatial anchors}
-\subsubsection{Stationary frame of reference}
+\subsection{Spatial Cognition beim Menschen}\label{subsec:spatial-cognition-beim-menschen}
+
+
+\subsection{Spatial Cognition für AR-Headsets}\label{subsec:spatial-cognition-fuer-ar-headsets}
+\subsubsection{World Coordinate System}\label{subsubsec:world-coordinate-system}
+\subsubsection{Spatial anchors}\label{subsubsec:spatial-anchors}
+\subsubsection{Stationary frame of reference}\label{subsubsec:stationary-frame-of-reference}
