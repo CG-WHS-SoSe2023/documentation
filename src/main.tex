@@ -95,12 +95,19 @@
     \pagenumbering{Roman}
     \setcounter{page}{2}
     \tableofcontents
+    \newpage
     \addcontentsline{toc}{section}{Abbildungsverzeichnis}
     \listoffigures
     \addcontentsline{toc}{section}{Tabellenverzeichnis}
     \listoftables
     \addcontentsline{toc}{section}{Codeverzeichnis}
     \lstlistoflistings
+    \addcontentsline{toc}{section}{Bewertungsverzeichnis}
+    \section*{Bewertungsverzeichnis}
+    \begin{tabular}{p{3cm} p{\textwidth-3cm}}
+        Abschnitt~\ref{sec:bewegen-in-der-erweiterten-realitaet} & \dotfill\hspace{1cm}Nik Benson\\
+        Abschnitt~\ref{sec:modellierung-fur-den-einsatz-auf-der-hololens2} & \dotfill\hspace{1cm}Alexander Dzambic\\
+    \end{tabular}
     \newpage
     \pagenumbering{arabic}
 
