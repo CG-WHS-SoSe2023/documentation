@@ -6,7 +6,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 
 \subsection{Degrees Of Freedom}\label{subsec:degrees-of-freedom}
     Degrees Of Freedom~\autocite{wikipedia-contributors-2023B}, kurz \textbf{DOF}, bezeichnen die Bewegungsfreiheiten eines Systems in einem Vektorraum.
-    Ein einfaches Beispiel sei mit der klassischen Transformationsmatrix in Abbildung~\ref{fig:matrix-DOFs} gegeben.
+    Ein einfaches Beispiel sei mit der klassischen Transformationsmatrix in \autoref{fig:matrix-DOFs} gegeben.
     \begin{figure}[ht!]
         \label{fig:matrix-DOFs}
         \begin{center}
@@ -33,7 +33,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     Es wird also mit jedem Parameter ein größerer Vektorraum aufgespannt.
     Der DOF entspricht damit der Dimension des zugehörigen Vektorraumes.
 
-    Der visuell einfachste Teilraum aus Abbildung~\ref{fig:matrix-DOFs} ist das kartesische Koordinatensystem, hier bezeichnet als \textbf{Vektor}.
+    Der visuell einfachste Teilraum aus \autoref{fig:matrix-DOFs} ist das kartesische Koordinatensystem, hier bezeichnet als \textbf{Vektor}.
     Im dreidimensionalen Raum ist eine Bewegung in 3 Richtungen möglich.
 
     Dazu kommt die \textbf{Skalierung}.
@@ -47,7 +47,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     AR-Headsets sin allerdings deutlich eingeschränkter.
     Sie haben 6DOF~\autocite{wikipedia-contributors-2023B}.
 
-    Das physische headset kann sich, wie in Abbildung~\ref{fig:6DOF} dargestellt, im Raum von $\vec{a}$ nach $\vec{b}$ bewegen und um jede seiner Achsen rotieren, allerdings nicht geschert oder skaliert werden.
+    Das physische headset kann sich, wie in \autoref{fig:6DOF} dargestellt, im Raum von $\vec{a}$ nach $\vec{b}$ bewegen und um jede seiner Achsen rotieren, allerdings nicht geschert oder skaliert werden.
     \begin{figure}[ht!]
         \label{fig:6DOF}
         \center
@@ -73,7 +73,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
             \includegraphics[width={0.5\textwidth}]{../assets/img/time_of_flight}
             \caption{Time of Flight~\autocite{wikipedia-contributors-2023D}}
         \end{figure}
-        Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023D}, kurz \textbf{ToF}, genannt und ist in Abbildung~\ref{fig:ToF} dargestellt.
+        Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023D}, kurz \textbf{ToF}, genannt und ist in \autoref{fig:ToF} dargestellt.
 
         Dem aufmerksamen Leser sollte aufgefallen sein, dass 4 weniger als 6 ist.
         Deshalb können aus den 4 Zahlen auch nur 3DOF, also die Position, auf 0.3 bis zu 5 Meter genau, errechnet werden.
@@ -102,14 +102,14 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 
             Als ein bionischer Ansatz wird dieses Konzept heute auf AR-Headsets angewendet.
             Daraus ergeben sich 6DOF, ohne an einen zuvor eingerichteten Raum gebunden zu sein.
-            Die funktionalität solcher Systeme ist in Abschnitt~\ref{subsec:spatial-cognition-fuer-ar-headsets} beschrieben.
+            Die funktionalität solcher Systeme ist in \autoref{subsec:spatial-cognition-fuer-ar-headsets} beschrieben.
 
 \subsection{Spatial Cognition beim Menschen}\label{subsec:spatial-cognition-beim-menschen}
     Das Kernkonzept der Spatial Cognition ist das Verarbeiten von Wissen über die Umgebung. \autocite{wikipedia-contributors-2023F}
     Es wird dabei regelmäßig neu organisiert, um das Verständnis der Umwelt zu verbessern.
 
     Als ein Beispiel wollen wir uns anschauen, wie Menschen ihre Umgebung beschreiben.
-    Die wahrnehmung der Umgebung, spezieller ihre Darstellung, wie in Abschnitt~\ref{subsubsec:cognitive-map} weiter beschrieben, wird weitestgehend von der Sprache beeinflusst. \autocite{haviland-1998}
+    Die wahrnehmung der Umgebung, spezieller ihre Darstellung, wie in \autoref{subsubsec:cognitive-map} weiter beschrieben, wird weitestgehend von der Sprache beeinflusst. \autocite{haviland-1998}
     Ich, so wie die meisten Leser vermutlich auch, sehe vor mir meinen Laptop, an dem ich dieses Paper schreibe.
     Für einen Sprecher der indigenen Sprache Guugu Yimithirr wäre mein Laptop südöstlich von mir.
     Das heißt, für uns ist die eigene orientierung im Raum wichtiger für die eigene Wahrnehmung.
@@ -120,14 +120,14 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     Während die Spatial Cognition bei Lebewesen zahlreiche Fachbereiche der Biologie und Psychologie abdeckt, stellt sich für uns die Frage, welche Informationen für den Nutzer am wichtigsten sind, um nicht die Orientierung zu verlieren, sowie welche Darstellungsformen wir übernehmen können, um die klassische Transformationsmatrix dieses Systems zu befähigen.
 
     \subsubsection{Navigation}\label{subsubsec:navigation}
-        Diese beiden Systeme nennt man \qq{Egocentric Navigation}\footnote{Beschreiben aus der Ich--Perspektive} und \qq{Allocentric Navigation}\footnote{Beschreiben von einem allgemeinen Referenzpunkt}. \autocite{wikipedia-contributors-2023F}
+        Diese beiden Systeme nennt man \enquote{Egocentric Navigation}\footnote{Beschreiben aus der Ich--Perspektive} und \enquote{Allocentric Navigation}\footnote{Beschreiben von einem allgemeinen Referenzpunkt}. \autocite{wikipedia-contributors-2023F}
 
         Zum Navigieren in großen, unbekannten Umgebungen ist dabei die Allocentric Navigation von Vorteil.
         Es werden große Referenzpunkte in der Landschaft gesucht und anhand eines globalen Koordinatensystems (Kompass) Richtungen angegeben.
         Die Abdeckung der Navigation ist damit höher.
 
         In bekannten Umgebungen ist die Egocentric Navigation allerdings im Vorteil.
-        Vor allem lokale Objekte und der navigierende selbst werden als Referenz verwendet zusammen mit relationalen Begriffen wie \qq{Links} oder \qq{Rechts}.
+        Vor allem lokale Objekte und der navigierende selbst werden als Referenz verwendet zusammen mit relationalen Begriffen wie \enquote{Links} oder \enquote{Rechts}.
         Da sich nicht so viele Sachen gemerkt werden müssen ist diese Art der Navigation effizienter, auf kosten der Effektivität.
 
     \subsubsection{Proprioception}\label{subsubsec:proprioception}
@@ -137,12 +137,36 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         Dadurch, dass die Ausdehnung jedes Muskels im Körper bekannt ist, wissen wir auch mit geschlossenen Augen, wo unser z.B.\ unser Arm ist.
 
         Diese Informationen fließen über das zentrale Nervensystem entweder in das Bewusstsein oder das Unterbewusstsein.
-        Hier wird aus diesen Informationen, zusammen mit den anderen Sinnen, wie z.B.\ Sehen, Hören, Riechen oder der Gleichgewichtssinn; eine \qq{Karte} von unserer Umgebung und unserer Körperposition erstellt.
+        Hier wird aus diesen Informationen, zusammen mit den anderen Sinnen, wie z.B.\ Sehen, Hören, Riechen oder der Gleichgewichtssinn; eine \enquote{Karte} von unserer Umgebung und unserer Körperposition erstellt.
 
-    \subsubsection{Cognitive map}\label{subsubsec:cognitive-map}
-        Diese Cognitive Map ...
+    \subsubsection{Cognitive Map}\label{subsubsec:cognitive-map}
+        Diese Cognitive Maps~\autocite{wikipedia-contributors-2023I} nutzen das sogenannte \enquote{Spatial Knowledge}, also all die zuvor beschriebenen Informationen, und bilden daraus eine abstrakte Darstellung.
+        Diese wird umgangssprachlich manchmal als inneres Auge bezeichnet.
 
-    \subsubsection{Reference frames}\label{subsubsec:reference-frames}
+        \enquote{Map} ist hierbei nicht als Karte zu verstehen, sondern als Abbildung.
+        Auch wenn es das anschaulichste Beispiel ist, weshalb wir uns in dieser Arbeit darauf begrenzen, können jegliche informationen auf diese Art und Weise abstrakt dargestellt werden.
+
+        Handelt es sich um eine karten--ähnliche Struktur, so setzt sie sich, unter anderem, aus zwei Arten von Information zusammen:
+        \begin{enumerate}
+            \item Positional Landmarks\\
+            Landmarks, oder Referenzpunkte, geben einen Uhrsprung für Wissen über die Umgebung.
+            \item Directional Cues\\
+            Richtungsangaben spezifizieren Relationen zwischen Objekten.
+        \end{enumerate}
+
+    \subsubsection{Reference Frames}\label{subsubsec:reference-frames}
+        In \autoref{subsubsec:navigation} haben wir die Begriffe \enquote{Egocentric Navigation} und \enquote{Allocentric Navigation} kennen gelernt.
+        Jetzt wollen wir diese Begriffe etwas verallgemeinern, damit wir sie später auch mittels Software formalisieren können.
+
+        Um sich im Raum zurechtzufinden, also Spatial Knowledge zu besitzen, muss es immer einen Referenzpunkt \autocite{wikipedia-contributors-2023F}, genauer ein Referenzkoordinatensystem geben.
+        Wir wissen bereits, dass diese Referenz die Ich--Perspektive\footnote{Beim Menschen ist es die Egocentric Navigation, in der VR sind es HUDs}, signifikante Punkte in der Landschaft\footnote{Beim Menschen ist es die Allocentric Navigation, in der VR sind es Base Stations} oder das Magnetfeld der Erde\footnote{Beim Menschen ist es der Kompass, in der Technik GPS} sein können.
+        Dies sind aber nicht die einzigen Optionen.
+
+        Ein nennenswertes Problem ist die Navigation im Weltraum.
+        Hier wird meistens ein Gitter mit einem frei gewählten Nullpunkt verwendet.
+
+        Allerdings ist das Referenzsystem beim Menschen dynamisch und individuell.
+        Auch wenn nur wenige formularisiert sind, so gibt es sehr viele mehr.
 
 \subsection{Spatial Cognition für AR-Headsets}\label{subsec:spatial-cognition-fuer-ar-headsets}
 
