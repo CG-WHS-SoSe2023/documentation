@@ -171,7 +171,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 \subsection{Spatial Cognition für AR--Headsets}\label{subsec:spatial-cognition-fuer-ar-headsets}
     In \autoref{subsec:degrees-of-freedom} haben wir uns die Transformationsmatrix aus der klassischen Computergrafik angeschaut.
     Diese basiert auf einem klassischen, 3--dimensionalen, kartesischen Koordinatensystem.
-    Da das klassische Sichtvolumen definiert ist, durch die Fläche $S=\left\{(x,y)\in \mathbb{R}^2;-1\leq x\leq 1\land -1\leq y\leq 1\right\}$ auf der $x_1$--$x_2$ Ebene, liegt der Mittelpunkt auf dem Ursprung des Koordinatensystems.
+    Da das klassische Sichtvolumen definiert ist, durch $S=\left\{(x,y,z)\in \mathbb{R}^3;-1\leq x\leq 1\land -1\leq y\leq 1\land -1\leq z\leq 1\right\}$, liegt der Mittelpunkt auf dem Ursprung des Koordinatensystems.
 
     Übertragen wir diese Information auf den Bildschirm vor dem Gesicht des Nutzers eines AR--Headsets, so ergibt sich daraus eine \enquote{Egocentric Navigation}, bzw.\ ein egozentrisches Koordinatensystem.
     Es können also, ohne das Rad neu zu erfinden, Objekte in relativer Position zum Nutzer platziert werden.
@@ -184,8 +184,10 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     \subsubsection{World Coordinate System}\label{subsubsec:world-coordinate-system}
         Um diese \enquote{Allocentric Navigation} zu erreichen wird ein globales Koordinatensystem eingeführt, das \enquote{World Coordinate System}~\autocite{sean-kerawala-2022}.
 
-        Dies ist das standard Koordinatensystem, welches aus der klassischen Render--pipeline bekannt ist.
+        Dies ist das standard Koordinatensystem, welches aus der klassischen Render--Pipeline bekannt ist.
         Damit wird das Egozentrische--Koordinatensystem zu unserem Kamera--Koordinatensystem.
+
+        Per Konvention ist in diesem Koordinatensystem die Einheit 1m.
 
         Der große Unterschied zum normalen Rendering ist, dass die Kamera nicht vom Programm, sondern vom Nutzer, bewegt wird.
 
@@ -202,10 +204,51 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         Somit entsteht ein Netzwerk aus Referenzpunkten, oder \enquote{Positional Landmarks} (Siehe \autoref{subsubsec:cognitive-map},) die die Umgebung beschreiben.
 
         \paragraph{D}amit fehlt nicht mehr viel zu einem Indoor Positioning System.
-            Die Wissensbasis der Referenzpunkte kann analog zu den Base Stations verwendet werden, um die Position aus zu machen.
+            Die Wissensbasis der Referenzpunkte kann analog zu den Base Stations verwendet werden, um die Position auszumachen.
             Die Rotation kann anschließend durch das Gyroskop einfach gemessen werden.
 
     \subsubsection{Spatial anchors}\label{subsubsec:spatial-anchors}
-        ~\autocite{thetuvix-2023B}
+        Ein System, welches auf diese Art und Weise ein IPS umsetzt sind Microsofts Spatial Anchors.~\autocite{thetuvix-2023B}
+
+        Deren AR--Headsets, die Hololens2, nutzt dieses System.
+        Allerdings bietet dieses System auch die möglichkeit, einzelne, oder auch alle, Referenzpunkte mit anderen Geräten zu teilen.
+        Damit können dann sogar Objekte zwischen zwei (oder mehreren) AR--Headsets geteilt werden.
+        Wir beschränken uns aber auf den einsatz des Systems auf einer Hololens2, da wir uns mit dem Computer--grafischen Teil des Systems befassen wollen.
+
+        Ein Spatial Anchor ist, zusätzlich zu seiner Funktion als Referenzpunkt für das IPS, sein eigenes Koordinatensystem.
+        In diesem können Objekte platziert werden, welche dann relativ zu dem Referenzpunkt besonders stabil positioniert sind.
+        Diese werden dann beim Rendern in das World Coordinate System transformiert.
+
+        Allerdings werden sie auch erste beim Rendern in das World Coordinate System übertragen.
+        Sie werden immer wieder neu in relation zueinander positioniert.
+        Dies hat den vorteil, dass sie genauer ihre Position in der echten Welt behalten.
+
+        Wenn nicht unter der Haube vom System erstellt, werden Spatial Anchors meistens von Nutzern erstellt.
+        Zum Beispiel mittels eines Raycasts interagiert der Nutzer mit einem Punkt.
+        Anschließend wird das erstellte Objekt an genau diesen Punkt gebunden.
+        So ist die Nutzerinteraktion besonders realistisch.
 
     \subsubsection{Stationary frame of reference}\label{subsubsec:stationary-frame-of-reference}
+        Auch ohne das Koordinatensystem eines Spatial Anchors können Objekte platziert werden.
+        Mittels des \enquote{stationary frame of reference}~\autocite{thetuvix-2023A} können auch Objekte im World Coordinate System platziert werden.
+        Diese Objekte werden dann als \enquote{World--Locked} bezeichnet.
+
+        Da der stationary frame of reference allerdings von den Spatial Anchors als IPS abhängig ist und bei der vermessung zwischen verschiedenen Spatial Anchors heute noch signifikante Fehler entstehen ist die nutzung nicht für die nutzung in einer großflächigeren Nutzungsumgebung empfohlen.
+        
+\subsection{Render--Pipeline der Hololens2}\label{subsec:renderpipeline-der-hololens2}
+\begin{figure}[ht!]
+    \label{fig:render-pipeline}
+    \begin{subfigure}{0.5\textwidth}
+        \label{subfig:render-pipeline-classic}
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/img/classic_render_pipline}
+        \caption{Klassisch~\autocite{visualcomputingwh-2023}}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \label{subfig:render-pipeline-spatial}
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/img/spatial_render_pipline}
+        \caption{Spatial}
+    \end{subfigure}
+    \caption{Render--Pipeline}
+\end{figure}

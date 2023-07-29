@@ -1,0 +1,18 @@
+graph TB
+    START[ ]
+    END[ ]
+    style START opacity:0
+    style END opacity:0
+
+    A[Spatial-Verarbeitung]
+    B[Vertex-Verarbeitung]
+    C[Rasterisierung]
+    D[Fragmment-Verarbeitung]
+    E[Blending]
+
+    START -->|Spatial Anchors| A
+    A -->|Geometrie| B
+    B -->|verarbeitete Geometrie| C
+    C -->|Fragmente| D
+    D -->|verarbeitete Fragmente| E
+    E -->|Pixel| END
