@@ -261,7 +261,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 \subsection{Render--Pipeline der Hololens2}\label{subsec:renderpipeline-der-hololens2}
     Da Informationen zu diesem Thema weitestgehend unveröffentlicht sind, handelt es sich im Folgenden um begründete Vermutungen.
 
-    In \autoref{subfig:render-pipeline-classic} ist, grob vereinfacht, die Render--Pipeline einer klassischen grafikanwendung dargestellt.
+    In \autoref{subfig:render-pipeline-classic} ist, grob vereinfacht, die Render--Pipeline einer klassischen Grafikanwendung dargestellt.
     Spannend für uns ist die Vertex--Verarbeitung.
 
     \begin{figure}[ht!]
@@ -281,9 +281,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         \label{fig:render-pipeline}
     \end{figure}
 
-    Hier findet nämlich die Transformation mittels der in \autoref{subsec:degrees-of-freedom} beschriebenen Transformationsmatrix stadt.
-    Die Transformationsmatrix der Anwendung wird mit der inversen Transformationsmatrix des Kamera--Koordinatensystems multipliziert (Siehe \autoref{eq:classic-camera-transformation}) (und auf das klassische Sichtvolumen beschränkt), um aus der Sicht der Kamera zu rendern.
-
+    Hier findet nämlich die Transformation mittels der in \autoref{subsec:degrees-of-freedom} beschriebenen Transformationsmatrix stadt.~\autocite{visualcomputingwh-2023}
 
     \begin{floatingequation}[ht!]
         \begin{align}
@@ -322,6 +320,17 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         \label{eq:classic-camera-transformation}
     \end{floatingequation}
 
+    Die Transformationsmatrix der Anwendung wird mit der inversen Transformationsmatrix des Kamera--Koordinatensystems multipliziert (Siehe \autoref{eq:classic-camera-transformation}) (und auf das klassische Sichtvolumen beschränkt,) um aus der Sicht der Kamera zu rendern.
+
+    Für die gesamte Render--Pipeline werden dabei ausschließlich die Vertices der Objekte sowie die Transformationsmatrizen geladen.
+    So müssen möglichst wenige Daten vom RAM der CPU auf den RAM der GPU übertragen werden.
+
+    Erweitern wir diesen Prozess um Spatial Anchors so ergibt sich der Fluss aus \autoref{subfig:render-pipeline-spatial}.
+    Für diese, vereinfachte, darstellung nehmen wir an, dass der stationary frame of reference ein Spatial Anchor im Uhrsprung des World Coordinate System ist.
+
+    Effektiv benötigen in dieser neuen Phase lediglich die Transformationsmatrizen ein kleines Preprocessing, wie in \autoref{eq:spatial-camera-transformation} beschrieben.
+    Bevor vom Global Coordinate System ins Camera Coordinate System transformiert wird, wird zunächst für jeden Spatial Anchor sein Koordinatensystem in das World Koordinate System überführt.
+
     \begin{floatingequation}[ht!]
         \begin{align}
             R_{\text{yaw}} &=&
@@ -359,4 +368,24 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         \label{eq:spatial-camera-transformation}
     \end{floatingequation}
 
-    \subsubsection{Performance}
+    Soweit so einfach, allerdings kommt noch hinzu, dass zunächst die Spatial Anchors ausgewertet werden müssen.
+    Anhand unserer Annahme, dass es sich dabei um eine KI, oder zumindest eine Heuristik handelt, wird auch diese auf der Grafikkarte agieren.
+
+    Aber auch dieses Problem lässt sich lösen.
+    Zunächst führen wir einen Raster--Thread ein, der mit einer Rate von 30 FPS das Rendering startet.
+    Im \enquote{Ruhezustand} wertet die Grafikkarte nun, mit über Zeit zunehmender Genauigkeit, die Sensordaten und damit die relativen Positionen der Spatial Anchors zueinander, aus.
+    Wenn allerdings ein Frame angefordert wird, so führt die Grafikkarte einen Context--Switch durch und rendert den Frame.
+    Hierzu wird zunächst ein Snapshot der Positionen der Spatial Anchors erstellt.
+    Dieser wird verwendet, um die Transformationsmatrizen zu berechnen.
+
+    Ein großes Problem, welches übrig bleibt, ist, dass die Frame--Rate für einen, sich bewegenden, Kopf noch zu langsam ist.
+    Mehr leistung an den Kopf des Nutzers zu schnüren ist allerdings unpraktikabel.
+    Deshalb müssen Tricks her.
+
+    Vorteilhaft ist, dass 30 Frames für eine flüssige bewegung der Objekte in der virtuellen Umgebung reichen.
+    Es muss lediglich die Bewegung des Kopfes in neuen Frames einberechnet werden.
+    Zwischen den Frames wird also die verarbeitete Geometrie im RAM der GPU gelassen.
+    Zusätzlich wird eine Transformationsmatrix von der vorherigen zu der aktuellen Kameraposition evaluiert und auf die Grafikkarte geladen.
+    Anschließend kann damit die Render--Pipeline mit weniger Aufwand erneut durchlaufen werden.
+    So können, mit wenig Aufwand, zum Beispiel 60~Frames pro Sekunde erreicht werden, auch wenn dies keine vollwertigen Frames sind.
+
