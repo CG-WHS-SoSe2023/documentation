@@ -8,7 +8,6 @@
 \usepackage{hyphenat}
 \usepackage{textcmds}
 \usepackage{xspace}
-\usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathtools}
@@ -17,15 +16,17 @@
 \usepackage{lipsum}
 \usepackage{subcaption}
 
+\usepackage{float}
+\newfloat{floatingequation}{thp}{lop}
+\floatname{floatingequation}{Gleichung}
+\newcommand{\floatingequationautorefname}{Gleichung}
+
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
 
 \usepackage{graphicx}
 \usepackage{chngpage}
 \usepackage{calc}
-
-\renewcommand{\lstlistingname}{Code}
-\renewcommand{\lstlistlistingname}{Codeverzeichnis}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -39,15 +40,6 @@
 }
 \urlstyle{same}
 
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-
-\usepackage{booktabs}
-\usepackage{siunitx}
-\usepackage{csvsimple}
-
-\usepgfplotslibrary{units}
-
 \usepackage{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -55,7 +47,26 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{nettrekblue}{rgb}{0.10,0.61,0.84}
 
-\lstdefinestyle{java}{
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{listings}
+\lstdefinelanguage{Kotlin}{
+    comment=[l]{//},
+    commentstyle={\color{gray}\ttfamily},
+    emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
+    emphstyle={\color{OrangeRed}},
+    identifierstyle=\color{black},
+    keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
+    keywordstyle={\color{nettrekblue}\bfseries},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[s]{"""*}{*"""},
+    ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
+    ndkeywordstyle={\color{BurntOrange}\bfseries},
+    sensitive=true,
+    stringstyle={\color{ForestGreen}\ttfamily},
+}
+
+\lstdefinestyle{default}{
     backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
     keywordstyle=\color{orange},
@@ -74,7 +85,10 @@
     tabsize=2,
 }
 
-\lstset{style=java}
+\lstset{style=default}
+
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{Codeverzeichnis}
 
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}

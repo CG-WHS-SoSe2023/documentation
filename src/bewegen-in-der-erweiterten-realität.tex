@@ -7,8 +7,8 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 \subsection{Degrees Of Freedom}\label{subsec:degrees-of-freedom}
     Degrees Of Freedom~\autocite{wikipedia-contributors-2023B}, kurz \textbf{DOF}, bezeichnen die Bewegungsfreiheiten eines Systems in einem Vektorraum.
     Ein einfaches Beispiel sei mit der klassischen Transformationsmatrix in \autoref{fig:matrix-DOFs} gegeben.
+
     \begin{figure}[ht!]
-        \label{fig:matrix-DOFs}
         \begin{center}
             \begin{math}
                 \begin{bmatrix}
@@ -28,10 +28,12 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
             \color{green} t & Tensor      & 6   \\
         \end{tabular}
         \caption{Degrees Of Freedom der Transformationsmatrix}
+        \label{fig:matrix-DOFs}
     \end{figure}
-    Ein DOF bezeichnet dabei einen eindimensionalen Parameter des Systems.
+
+    Ein degree of freedom bezeichnet dabei einen eindimensionalen Parameter des Systems.
     Es wird also mit jedem Parameter ein größerer Vektorraum aufgespannt.
-    Der DOF entspricht damit der Dimension des zugehörigen Vektorraumes.
+    Der degree of freedom entspricht damit der Dimension des zugehörigen Vektorraumes.
 
     Der visuell einfachste Teilraum aus \autoref{fig:matrix-DOFs} ist das kartesische Koordinatensystem, hier bezeichnet als \textbf{Vektor}.
     Im dreidimensionalen Raum ist eine Bewegung in 3 Richtungen möglich.
@@ -44,16 +46,18 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     Diese sind jeweils um alle 3 Achsen des kartesischen Koordinatensystems möglich und haben damit jeweils 3~DOF\@.
     Daraus ergeben sich 10~DOF der klassischen Transformationsmatrix.
 
-    AR--Headsets sin allerdings deutlich eingeschränkter.
+    AR--Headsets sind allerdings deutlich eingeschränkter.
     Sie haben 6~DOF~\autocite{wikipedia-contributors-2023B}.
 
-    Das physische headset kann sich, wie in \autoref{fig:6DOF} dargestellt, im Raum von $\vec{a}$ nach $\vec{b}$ bewegen und um jede seiner Achsen rotieren, allerdings nicht geschert oder skaliert werden.
+    Das physische Headset kann sich, wie in \autoref{fig:6DOF} dargestellt, im Raum von $\vec{a}$ nach $\vec{b}$ bewegen und um jede seiner Achsen rotieren, allerdings nicht geschert oder skaliert werden.
+
     \begin{figure}[ht!]
-        \label{fig:6DOF}
         \center
         \includesvg[width={0.5\textwidth}]{../assets/img/6DOF}
         \caption{6 Degrees Of Freedom~\autocite{wikipedia-contributors-2023B}}
+        \label{fig:6DOF}
     \end{figure}
+
     Damit wird die Darstellung meistens auf einen Vektor für die Position sowie eine Quaternion~\autocite{wikipedia-contributors-2023G} für die Rotation beschränkt.
 
 \subsection{Positioning System}\label{subsec:positioning-system}
@@ -65,14 +69,17 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         Eines der bekanntesten Positionierungssysteme ist das GPS~\autocite{wikipedia-contributors-2023J}, welches heutzutage in jedem Mobiltelefon verbaut ist.
         GPS ist eines der wenigen globalen Satellitennavigationssysteme.
 
-        Diese Systeme lösen das Problem der Positionierung, wie der Name suggeriert, indem, mindestens 4, Satellite, in Sichtweite, Radiowellen wellen aussenden.
-        Die Radiowellen tragen als Signal den Zeitstempel des senden des Signals, damit ist der Abstand vom Empfänger zum Sender von allen Satellite in Sichtweite bekannt.
+        Diese Systeme lösen das Problem der Positionierung, wie der Name suggeriert, indem, mindestens 4, Satellite, in Sichtweite, Radiowellen aussenden.
+        Die Radiowellen tragen als Signal den Zeitstempel des senden des Signals.
+        Damit ist der Abstand vom Empfänger zum Sender von allen Satellite in Sichtweite bekannt.
+
         \begin{figure}[ht!]
-            \label{fig:ToF}
             \center
             \includegraphics[width={0.5\textwidth}]{../assets/img/time_of_flight}
             \caption{Time of Flight~\autocite{wikipedia-contributors-2023D}}
+            \label{fig:ToF}
         \end{figure}
+
         Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023D}, kurz \textbf{ToF}, genannt und ist in \autoref{fig:ToF} dargestellt.
 
         Dem aufmerksamen Leser sollte aufgefallen sein, dass 4 weniger als 6 ist.
@@ -89,7 +96,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         \paragraph{Base Stations}\label{par:base-stations} werden hierfür klassischerweise verwendet.
             Diese sind externe Geräte, welche, ähnlich wie die Satellite beim GPS, die Position des Empfängers ermitteln.
 
-            Es gibt einige enterprise Systeme, welche zum Beispiel in Lagerhäusern verwendet werden~\autocite{wikipedia-contributors-2023E}.
+            Es gibt einige enterprise Systeme, welche zum Beispiel in Lagerhäusern verwendet werden.\footnote{Allerdings gibt es mittlerweile auch hybride Systeme, welche die in \autoref{subsubsec:spatial-anchors} beschriebenen Systeme mit einbeziehen.~\autocite{he-2021}}~\autocite{wikipedia-contributors-2023E}
             Für diese Ausarbeitung werden wir uns allerdings als Beispiel die SteamVR Base Station 2.0~\autocite{valve-corporation-no-date} anschauen.
 
             Diese nutzen allerdings keine Time of Flight.
@@ -112,7 +119,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     Die wahrnehmung der Umgebung, spezieller ihre Darstellung, wie in \autoref{subsubsec:cognitive-map} weiter beschrieben, wird weitestgehend von der Sprache beeinflusst. \autocite{haviland-1998}
     Ich, so wie die meisten Leser vermutlich auch, sehe vor mir meinen Laptop, an dem ich dieses Paper schreibe.
     Für einen Sprecher der indigenen Sprache Guugu Yimithirr wäre mein Laptop südöstlich von mir.
-    Das heißt, für uns ist die eigene orientierung im Raum wichtiger für die eigene Wahrnehmung.
+    Das heißt, für uns ist die eigene Orientierung im Raum wichtiger für die eigene Wahrnehmung.
 
     Um kurz in die Computergrafik zurückzukehren, ein Vergleich wäre das World Coordinate System für uns und das Camera Coordinate System für Guugu Yimithirr sprecher.
 
@@ -127,14 +134,14 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         Die Abdeckung der Navigation ist damit höher.
 
         In bekannten Umgebungen ist die Egocentric Navigation allerdings im Vorteil.
-        Vor allem lokale Objekte und der navigierende selbst werden als Referenz verwendet zusammen mit relationalen Begriffen wie \enquote{Links} oder \enquote{Rechts}.
+        Vor allem lokale Objekte und der Navigierende selbst werden als Referenz verwendet zusammen mit relationalen Begriffen wie \enquote{Links} oder \enquote{Rechts}.
         Da sich nicht so viele Sachen gemerkt werden müssen ist diese Art der Navigation effizienter, auf kosten der Effektivität.
 
     \subsubsection{Proprioception}\label{subsubsec:proprioception}
         Proprioception ist die Wahrnehmung des eigenen Körpers. \autocite{wikipedia-contributors-2023H}
         Spezifischer: die Wahrnehmung der eigenen Muskeln.
 
-        Dadurch, dass die Ausdehnung jedes Muskels im Körper bekannt ist, wissen wir auch mit geschlossenen Augen, wo unser z.B.\ unser Arm ist.
+        Dadurch, dass die Ausdehnung jedes Muskels im Körper bekannt ist, wissen wir auch mit geschlossenen Augen, wo z.B.\ unser Arm ist.
 
         Diese Informationen fließen über das zentrale Nervensystem entweder in das Bewusstsein oder das Unterbewusstsein.
         Hier wird aus diesen Informationen, zusammen mit den anderen Sinnen, wie z.B.\ Sehen, Hören, Riechen oder der Gleichgewichtssinn; eine \enquote{Karte} von unserer Umgebung und unserer Körperposition erstellt.
@@ -179,7 +186,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
     So kann sich der Nutzer allerdings nicht durch diese virtuelle Welt bewegen.
     Es sind 0~DOF\@.
 
-    Es wird also eine \enquote{Allocentric Navigation}, bzw.\ ein allozentrisches Koordinatensystem, benötigt, um tatsächlich Bewegungsfreiheit (DOF) zu ermöglichen.
+    Es wird also eine \enquote{Allocentric Navigation}, bzw.\ ein allozentrisches Koordinatensystem, benötigt, um tatsächlich Bewegungsfreiheit (degrees of freedom) zu ermöglichen.
 
     \subsubsection{World Coordinate System}\label{subsubsec:world-coordinate-system}
         Um diese \enquote{Allocentric Navigation} zu erreichen wird ein globales Koordinatensystem eingeführt, das \enquote{World Coordinate System}~\autocite{sean-kerawala-2022}.
@@ -207,48 +214,149 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
             Die Wissensbasis der Referenzpunkte kann analog zu den Base Stations verwendet werden, um die Position auszumachen.
             Die Rotation kann anschließend durch das Gyroskop einfach gemessen werden.
 
+        \paragraph{V}orraussetzung dafür, ein solches System überhaupt mit Daten füllen zu können ist allerdings eine effiziente Auswertung der Sensordaten.
+            Hierzu werden Heuristika oder spezifischer meist künstliche Intelligenz verwendet.
+            Da diese meist auch effizient auf der GPU laufen, konkurrieren sie mit der hohen Grafikanforderung an AR--Headsets.
+            Mehr dazu in \autoref{subsec:renderpipeline-der-hololens2}.
+
     \subsubsection{Spatial anchors}\label{subsubsec:spatial-anchors}
         Ein System, welches auf diese Art und Weise ein IPS umsetzt sind Microsofts Spatial Anchors.~\autocite{thetuvix-2023B}
 
         Deren AR--Headsets, die Hololens2, nutzt dieses System.
         Allerdings bietet dieses System auch die möglichkeit, einzelne, oder auch alle, Referenzpunkte mit anderen Geräten zu teilen.
-        Damit können dann sogar Objekte zwischen zwei (oder mehreren) AR--Headsets geteilt werden.
+        Damit können dann sogar Objekte zwischen zwei (oder mehreren) AR--Headsets geteilt werden.~\autocite{pamistel-2022}
         Wir beschränken uns aber auf den einsatz des Systems auf einer Hololens2, da wir uns mit dem Computer--grafischen Teil des Systems befassen wollen.
 
         Ein Spatial Anchor ist, zusätzlich zu seiner Funktion als Referenzpunkt für das IPS, sein eigenes Koordinatensystem.
         In diesem können Objekte platziert werden, welche dann relativ zu dem Referenzpunkt besonders stabil positioniert sind.
-        Diese werden dann beim Rendern in das World Coordinate System transformiert.
+        Diese werden anschließend beim Rendern in das World Coordinate System transformiert.
 
         Allerdings werden sie auch erste beim Rendern in das World Coordinate System übertragen.
         Sie werden immer wieder neu in relation zueinander positioniert.
         Dies hat den vorteil, dass sie genauer ihre Position in der echten Welt behalten.
 
         Wenn nicht unter der Haube vom System erstellt, werden Spatial Anchors meistens von Nutzern erstellt.
-        Zum Beispiel mittels eines Raycasts interagiert der Nutzer mit einem Punkt.
-        Anschließend wird das erstellte Objekt an genau diesen Punkt gebunden.
-        So ist die Nutzerinteraktion besonders realistisch.
+        Zum Beispiel, wenn ein nutzer mittels des Gaze\footnote{Als Gaze bezeichnet Microsoft das Equivalent eines Cursors zur Interaktion im 3--dimmensionalen Raum. Auf der Hololens ist es eine Linie, die den Punkt markiert, auf den der Nutzer schaut und auf der HoloLesn2 ist es der Punkt,auf den der nutzer mittels einem beliebigen seiner Zeigefinger zeigt.~\autocite{sostel-2023} Unter der Haube findet dafür ein Raycast stadt. Mittels des Spatial Mappings kann der Raycast auch reale Objekte treffen.~\autocite{mattzmsft-2023}} ein Objekt platziert.
+        Wie in \autoref{lst:place-spatial-anchor} dargestellt, wird zunächst am nächsten, umliegenden, signifikanten Punkt, oder Landmark, ein Spatial Anchor erstellt, in dessen Koordinatensystem anschließend das Objekt platziert wird.
+
+        \lstinputlisting[label={lst:place-spatial-anchor},caption={Platzieren eines Spatial Anchors nach Nutzerinteraktion (Pseudocode)},language=Kotlin]{../assets/code/place_spatial_anchor.kt}
+
+        Dadurch ist das erstellte Objekt für den Nutzer an den Ort gebunden, an welchem er das Objekt platziert hat.
+
+        \paragraph{N}achteil dieses Systems ist die Winkelungenauigkeit.
+            Da der Fehler der Spatial Anchors größer wird, desto weiter der Nutzer sich entfernt, sollten Objekte maximal 3~Meter vom Uhrsprung eines Spatial Anchors platziert werden.
+            Sie können also nicht für dynamische\footnote{in einem großen Umkreis, viel bewegte} Objekte verwendet werden.
 
     \subsubsection{Stationary frame of reference}\label{subsubsec:stationary-frame-of-reference}
         Auch ohne das Koordinatensystem eines Spatial Anchors können Objekte platziert werden.
         Mittels des \enquote{stationary frame of reference}~\autocite{thetuvix-2023A} können auch Objekte im World Coordinate System platziert werden.
         Diese Objekte werden dann als \enquote{World--Locked} bezeichnet.
 
-        Da der stationary frame of reference allerdings von den Spatial Anchors als IPS abhängig ist und bei der vermessung zwischen verschiedenen Spatial Anchors heute noch signifikante Fehler entstehen ist die nutzung nicht für die nutzung in einer großflächigeren Nutzungsumgebung empfohlen.
-        
+        Da der stationary frame of reference allerdings von den Spatial Anchors als IPS abhängig ist und bei der Vermessung zwischen verschiedenen Spatial Anchors heute noch signifikante Fehler entstehen ist die nutzung nicht in einer großflächigeren Nutzungsumgebung empfohlen.
+        Microsoft empfiehlt ein Limit von 5~Metern.
+
+        Für sogenannte \enquote{world--scale experience} muss eine kombination aus den 3 Typen von Koordinatensystemen genutzt werden.
+        Wir kategorisieren also in HUD, world--locked und anchored positionierte Objekte.
+
 \subsection{Render--Pipeline der Hololens2}\label{subsec:renderpipeline-der-hololens2}
-\begin{figure}[ht!]
-    \label{fig:render-pipeline}
-    \begin{subfigure}{0.5\textwidth}
-        \label{subfig:render-pipeline-classic}
-        \centering
-        \includegraphics[width=0.5\textwidth]{../assets/img/classic_render_pipline}
-        \caption{Klassisch~\autocite{visualcomputingwh-2023}}
-    \end{subfigure}%
-    \begin{subfigure}{0.5\textwidth}
-        \label{subfig:render-pipeline-spatial}
-        \centering
-        \includegraphics[width=0.5\textwidth]{../assets/img/spatial_render_pipline}
-        \caption{Spatial}
-    \end{subfigure}
-    \caption{Render--Pipeline}
-\end{figure}
+    Da Informationen zu diesem Thema weitestgehend unveröffentlicht sind, handelt es sich im Folgenden um begründete Vermutungen.
+
+    In \autoref{subfig:render-pipeline-classic} ist, grob vereinfacht, die Render--Pipeline einer klassischen grafikanwendung dargestellt.
+    Spannend für uns ist die Vertex--Verarbeitung.
+
+    \begin{figure}[ht!]
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=0.5\textwidth]{../assets/img/classic_render_pipline}
+            \caption{Klassisch~\autocite{visualcomputingwh-2023}}
+            \label{subfig:render-pipeline-classic}
+        \end{subfigure}%
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=0.5\textwidth]{../assets/img/spatial_render_pipline}
+            \caption{Spatial}
+            \label{subfig:render-pipeline-spatial}
+        \end{subfigure}
+        \caption{Render--Pipeline}
+        \label{fig:render-pipeline}
+    \end{figure}
+
+    Hier findet nämlich die Transformation mittels der in \autoref{subsec:degrees-of-freedom} beschriebenen Transformationsmatrix stadt.
+    Die Transformationsmatrix der Anwendung wird mit der inversen Transformationsmatrix des Kamera--Koordinatensystems multipliziert (Siehe \autoref{eq:classic-camera-transformation}) (und auf das klassische Sichtvolumen beschränkt), um aus der Sicht der Kamera zu rendern.
+
+
+    \begin{floatingequation}[ht!]
+        \begin{align}
+            R_{\text{yaw}} &=&
+            \begin{bmatrix}
+                \cos(y_{\text{camera}}) & -\sin(y_{\text{camera}}) & 0 & 0 \\
+                \sin(y_{\text{camera}}) & \cos(y_{\text{camera}})  & 0 & 0 \\
+                0                       & 0                        & 1 & 0 \\
+                0                       & 0                        & 0 & 1
+            \end{bmatrix}\\
+            R_{\text{pitch}} &=&
+            \begin{bmatrix}
+                \cos(p_{\text{camera}})  & 0 & \sin(p_{\text{camera}}) & 0 \\
+                0                        & 1 & 0                       & 0 \\
+                -\sin(p_{\text{camera}}) & 0 & \cos(p_{\text{camera}}) & 0 \\
+                0                        & 0 & 0                       & 1
+            \end{bmatrix}\\
+            R_{\text{roll}} &=&
+            \begin{bmatrix}
+                1 & 0                       & 0                        & 0 \\
+                0 & \cos(r_{\text{camera}}) & -\sin(r_{\text{camera}}) & 0 \\
+                0 & \sin(r_{\text{camera}}) & \cos(r_{\text{camera}})  & 0 \\
+                0 & 0                       & 0                        & 1
+            \end{bmatrix}\\
+            T_{\text{camera}} &=&
+            \begin{bmatrix}
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_x} \\
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_y} \\
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_z} \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \cdot R_{\text{yaw}}\cdot R_{\text{pitch}}\cdot R_{\text{roll}}\\
+            T &=& T_{\text{Application}}\cdot T_{\text{camera}}
+        \end{align}
+        \caption{Transformation ohne Spatial Anchors}
+        \label{eq:classic-camera-transformation}
+    \end{floatingequation}
+
+    \begin{floatingequation}[ht!]
+        \begin{align}
+            R_{\text{yaw}} &=&
+            \begin{bmatrix}
+                \cos(y_{\text{anchor}})  & \sin(y_{\text{anchor}}) & 0 & 0 \\
+                -\sin(y_{\text{anchor}}) & \cos(y_{\text{anchor}}) & 0 & 0 \\
+                0                        & 0                       & 1 & 0 \\
+                0                        & 0                       & 0 & 1
+            \end{bmatrix}\\
+            R_{\text{pitch}} &=&
+            \begin{bmatrix}
+                \cos(p_{\text{anchor}}) & 0 & -\sin(p_{\text{anchor}}) & 0 \\
+                0                       & 1 & 0                        & 0 \\
+                \sin(p_{\text{anchor}}) & 0 & \cos(p_{\text{anchor}})  & 0 \\
+                0                       & 0 & 0                        & 1
+            \end{bmatrix}\\
+            R_{\text{roll}} &=&
+            \begin{bmatrix}
+                1 & 0                        & 0                       & 0 \\
+                0 & \cos(r_{\text{anchor}})  & \sin(r_{\text{anchor}}) & 0 \\
+                0 & -\sin(r_{\text{anchor}}) & \cos(r_{\text{anchor}}) & 0 \\
+                0 & 0                        & 0                       & 1
+            \end{bmatrix}\\
+            T_{\text{anchor}} &=&
+            \begin{bmatrix}
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_x} \\
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_y} \\
+                0 & 0 & 0 & \vec{t}_{camera}\cdot\vec{e_z} \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \cdot R_{\text{yaw}}\cdot R_{\text{pitch}}\cdot R_{\text{roll}}\\
+            T &=& T_{\text{Application}}\cdot T_{\text{anchor}}\cdot T_{\text{camera}}
+        \end{align}
+        \caption{Transformation mit Spatial Anchors}
+        \label{eq:spatial-camera-transformation}
+    \end{floatingequation}
+
+    \subsubsection{Performance}
