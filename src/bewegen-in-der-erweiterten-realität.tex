@@ -82,7 +82,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
 
         Dieses Konzept wird Time of Flight~\autocite{wikipedia-contributors-2023D}, kurz \textbf{ToF}, genannt und ist in \autoref{fig:ToF} dargestellt.
 
-        Dem aufmerksamen Leser sollte aufgefallen sein, dass 4 weniger als 6 ist.
+        Für jeden degree of freedom wird allerdings mindestens ein Parameter benötigt.
         Deshalb können aus den 4 Zahlen auch nur 3~DOF, also die Position, auf 0.3 bis zu 5 Meter genau, errechnet werden.
 
     \subsubsection{Indoor Positioning System}\label{subsubsec:indoor-positioning-system}
@@ -235,7 +235,7 @@ Die schwierigkeit liegt also darin, Objekte im realen Raum platzieren zu können
         Sie werden immer wieder neu in relation zueinander positioniert.
         Dies hat den vorteil, dass sie genauer ihre Position in der echten Welt behalten.
 
-        Wenn nicht unter der Haube vom System erstellt, werden Spatial Anchors meistens von Nutzern erstellt.
+        Wenn nicht unter der Haube vom System, werden Spatial Anchors meistens von Nutzern erstellt.
         Zum Beispiel, wenn ein nutzer mittels des Gaze\footnote{Als Gaze bezeichnet Microsoft das Equivalent eines Cursors zur Interaktion im 3--dimmensionalen Raum. Auf der Hololens ist es eine Linie, die den Punkt markiert, auf den der Nutzer schaut und auf der HoloLesn2 ist es der Punkt,auf den der nutzer mittels einem beliebigen seiner Zeigefinger zeigt.~\autocite{sostel-2023} Unter der Haube findet dafür ein Raycast stadt. Mittels des Spatial Mappings kann der Raycast auch reale Objekte treffen.~\autocite{mattzmsft-2023}} ein Objekt platziert.
         Wie in \autoref{lst:place-spatial-anchor} dargestellt, wird zunächst am nächsten, umliegenden, signifikanten Punkt, oder Landmark, ein Spatial Anchor erstellt, in dessen Koordinatensystem anschließend das Objekt platziert wird.
 
