@@ -5,13 +5,10 @@ Auf der Hololens gibt es limits von objekten und deren anzahl an dreiecken.
 Diese limits gibt es aufgrund der Prozessorleistung des eingebauten chips und der kühlungskapazität von dem eingebautem kühler.
 Die Temperaturlimits sind nicht nur wegen dem schutz der Hardware sondern auch dem Tragekomfor bedingt. 
 
-Microsoft schlägt für die Objekte in einer szene ein dreieck limit an. Diese limits sind für bis zu drei 
-objekte in der szene bei bis zu 100.000\autocite{optimize_3d} dreiecke pro objekt. 
-Diese limits sind nur empfehlungen die für den test wichtig sind da man an dieser Anzahl 
-sehen kann wieweit man diese überschritten hat.
-Durch tests kann abgeleitet werder in wiefern man sich an die vorgeschlagenen limits halten muss, bevor man 
-an die Limits des Prozessors kommt. Somit kann man schon bei der erstellung einer szene schon einschätzen ob
-die Leistung beeinflusst wird oder ob man noch im ramen liegt.
+Microsoft schlägt für die Objekte in einer szene ein dreieck limit an. Diese limits sind für bis zu drei objekte in der szene bei bis zu 100.000\autocite{optimize_3d} dreiecke pro objekt. 
+Diese limits sind nur empfehlungen die für den test wichtig sind da man an dieser Anzahl sehen kann wieweit man diese überschritten hat.
+Durch tests kann abgeleitet werder in wiefern man sich an die vorgeschlagenen limits halten muss, bevor man an die Limits des Prozessors kommt.
+Somit kann man schon bei der erstellung einer szene schon einschätzen ob die Leistung beeinflusst wird oder ob man noch im ramen liegt.
 
 %¹microsoft seite mit limit werten
 %Die von microsoft gegebenen limits¹ die für die anfänglichen test wichtig sind 
@@ -25,24 +22,49 @@ die Leistung beeinflusst wird oder ob man noch im ramen liegt.
 %performance veringerungen entstehen könnten. mit dieser information kann man 
 %masnahmen einleiten die die performance so hoch wie 
 %möglich hält.
-
+\newpage
 \subsection{Testobjekte}\label{subsec:Testobjekte}
 
 
 Für die Tests sind zwei objekte gewählt die jeweils über und unter dem vorgeschlagenem Limit \autocite{optimize_3d} sind.
-Das kleinere Objekt ist ein affenkopf das standartmäsig mit dem Programm Blender mitgeliefert kommt.
-Das Größere Objekt ist ein fraktal würfel der in Blender mit einem Plugin generiert wurde.
+Das kleinere Objekt ist ein Affenkopf \autocite{Blender_primitives} das standartmäsig mit dem Programm Blender \autocite{Blender} mitgeliefert kommt.
+Das Größere Objekt ist der Fraktal würfel Mengersponge der in Blender \autocite{Blender} mit einem Plugin \autocite{Blender_Extra_Objects} generiert wurde.
 Beide objekte wurden jeweils als fbx datei exportiert.
+Die Dateigröße des Affenkopfs ist 47KB und die des Fraktals 9838KB.
+Diese Dateigrößen kommen von den verschiedenen dreieck Anzahlen, die bei dem Fraktal 672.768 dreiecke und bei dem Affenkopf 968 dreiecke sind.
+Durch diese Testobjekte soll die performance der Hololens einschätzbar werden.
+\begin{figure}[ht!]
+    \center
+    \includegraphics[trim={13cm 0 13cm 0},clip,width={0.5\textwidth}]{../assets/img/menger_sponge.png}
+    \caption{Mengersponge \autocite{Blender_Extra_Objects}}
+    \label{fig:Mengersponge}
+\end{figure}
+\begin{figure}[ht!]
+    \center
+    \includegraphics[trim={14cm 3cm 14cm 4cm},clip,width={0.5\textwidth}]{../assets/img/monkey.png}
+    \caption{Monkey \autocite{Blender_primitives}}
+    \label{fig:Menonkey}
+\end{figure}
 
 
 
 %Als testobjekt wurde ein mengersponge fraktal und ein default affenkopf aus blender jeweils als fbx datei exportiert.
-%die größe der datei des fraktals begab sich auf 9838KB und die des affenkopfs auf 57KB. die dreiekanzahl sind für das fraktal
+%die größe der datei des fraktals begab sich auf 9838KB und die des affenkopfs auf 47KB. die dreiekanzahl sind für das fraktal
 %672.768 und für den affenkopf 968. diese objekte sind gewählt da sie auf zwei verschiedenen enden des limits sind.
 %der affenkopf ist weniger als das limit und als test innerhalb der limitation und das fraktal als element weit oberhalb der limit grenze
 %die auf der microsoft¹ seite zu finden ist.
-
+\newpage
 \subsection{Test verfahren}\label{subsec:Test verfahren}
+
+Auf der Hololens exsistiert ein Programm das 3d objekte anzeigen kann.
+Dieses Programm wird als erster Test genommen.
+Bei diesem Test wird getestet ob das Objekt in diesem programm geladen werden kann.
+Der zweite Test ist ob wenn man das Objekt in ein Unity projekt importiert ein unterschied besteht.
+Das Unity pojekt wird dann auf der Hololens ausgeführt und getestet.
+Die wichtigsten Datenpunkte für diese Tests sind die fps, Dreieckanzahl, und ob das Objekt angezeigt werden kann.
+Durch die Ergebnisse der Tests wird dann klar wo in etwa die Limits liegen und ob diese über oder unter dem vorgeschlagenen limits \autocite{optimize_3d} liegen die von Microsoft vorgeschlagen sind.
+
+
 
 %erst wird getestet ob die objekte in dem vorinstallierten 3d viewer ladbar sind.
 %nach diesen test werden die objekte in dem unity projekt importert und auf der hololens ausgeführt.
@@ -59,7 +81,12 @@ Beide objekte wurden jeweils als fbx datei exportiert.
 
 \subsection{Verbesserungsmethoden}\label{subsec:Verbesserungsmethoden}
 
-
+Es gibt möglichkeiten die Objekte in voraus zu optimieren.
+Einige methoden sind schon auf der seite von Microsoft \autocite{best_practices} beschrieben.
+Texturen können kleiner gemacht werden und als eine Textur in dem Propjekt importiert werden.
+Bei objekten mit einem Inneleben das nicht gesehen wird kann man die nicht sichtbare geometrie einfach entfernen.
+Eine weitere optimisierungsmöglichkeit ist das die dreieckanzahl soweit wie möglich zu verringern so dass nicht zu große Objekte geladen werden.
+Objekte die nicht voneinander getrennt werden müssen können zu einem Objekt zusammen gefügt werden.
 
 %²microsoft seite vorschläge für optimisierung
 %durch einfaches importieren des fraktals in das unity projekt konnte es angezeigt werden obwohl es sichtbare performance probleme
@@ -72,7 +99,11 @@ Beide objekte wurden jeweils als fbx datei exportiert.
 
 \subsection{Zukünftige verbesserungsmöglichkeiten}\label{subsec:Zukünftige verbesserungsmöglichkeiten}
 
-
+In der Zukunft gib es verschiedenste möglichkeiten die Performance zu verbessern.
+Mit einem Standpc und einer kabelosen verbindung zu einem AR Gerät kann die Leistung von dem Headset abgekoppelt werden. 
+Damit kann die Leistung von dem PC hochgenug für die applikation gewählt werden.
+Es ist mit einem Dienst mit Anwendungsstreaming auch möglich die Prozessorleistung limitiert werden die das Headset leisten muss.
+Wenn die Streaming methoden nicht möglich sind können die zukünftige AR Headsets mit stärkeren mobilen Prozessoren ausgerüstet werden. Mit einem stärkeren Prozessor sind die limits viel höher, dies ist aber oft zur jeweiligen zeit nicht möglich.
 %Es gibt einige möglichkeiten die performance für ar in der zukunft zu verbessern.
 %durch ein desktop pc und kabelose verbinung kann man die performance verbessern und den komfort, da nur die anzeige seite auf
 %dem headset unterstütst werden muss. falls keine möglichkeit für einen eigenen pc für streaming vorhanden ist kann auch ein online
